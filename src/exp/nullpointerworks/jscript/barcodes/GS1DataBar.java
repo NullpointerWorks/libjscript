@@ -11,7 +11,7 @@ package exp.nullpointerworks.jscript.barcodes;
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 221
  */
-public class GS1DataBarOmnidirectional extends RSS14
+public class GS1DataBar extends RSS14
 {
 	
 }

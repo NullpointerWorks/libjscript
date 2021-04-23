@@ -11,4 +11,5 @@ module libnpw.jscript
 	exports exp.nullpointerworks.jscript;
 	exports exp.nullpointerworks.jscript.barcodes;
 	exports exp.nullpointerworks.jscript.commands;
+	exports exp.nullpointerworks.jscript.cutting;
 }

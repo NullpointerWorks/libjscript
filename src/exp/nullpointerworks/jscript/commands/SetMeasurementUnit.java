@@ -1,6 +1,7 @@
 package exp.nullpointerworks.jscript.commands;
 
 import exp.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.JScriptException;
 import exp.nullpointerworks.jscript.Measurement;
 
 /**
@@ -34,8 +35,10 @@ public class SetMeasurementUnit implements JScript
 	}
 	
 	@Override
-	public String getText()
+	public String getText() throws JScriptException
 	{
+		if (measure==null) throw new JScriptException("Nullpointer: Measurement option is null.");
+		
 		switch(measure)
 		{
 		default:

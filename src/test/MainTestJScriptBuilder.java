@@ -5,6 +5,10 @@
  */
 package test;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
 import com.nullpointerworks.jscript.*;
 import com.nullpointerworks.jscript.commands.*;
 
@@ -17,20 +21,39 @@ public class MainTestJScriptBuilder
 	
 	public MainTestJScriptBuilder()
 	{
-		JScriptBuilder builder = new JScriptBuilder();
-		builder.setReturnCharacter( ReturnCharacter.LF );
+		JScriptBuilder script = new JScriptBuilder();
 		
 		// the command below affects all labels printed afterwards, even outside this job.
 		// I advise to always set the unit to make sure you're working in the intended unit
-		builder.add( new SetMeasurementUnit(Measurement.METRIC) );
+		script.add( new SetMeasurementUnit(Measurement.METRIC) );
 		
-		builder.add( new JobStart() );
-		builder.add( new PrintLabels().setAmount(4) );
+		script.add( new JobStart() );
 		
+		
+		
+		
+		
+		script.add( new PrintLabels().setAmount(4) );
+		script.setReturnCharacter( ReturnCharacter.LF );
+		
+		try 
+		{
+			sendJScript("192.168.10.95", 9100, script.getText());
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
-	
-	
+	public void sendJScript(String ip, int port, String jscript) throws IOException
+	{
+		Socket clientSocket = new Socket(ip,port);
+		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream() );
+		outToServer.write(jscript.getBytes("UTF-8"));
+		outToServer.close();
+		clientSocket.close();
+	}
 }
 /*
 

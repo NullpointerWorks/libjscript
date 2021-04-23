@@ -7,8 +7,19 @@ package com.nullpointerworks.jscript;
 
 public enum ReturnCharacter 
 {
+	/**
+	 * Carriage return.
+	 */
 	CR("\r"),
+	
+	/**
+	 * Line feed.
+	 */
 	LF("\n"),
+	
+	/**
+	 * Carriage return, line feed.
+	 */
 	CRLF("\r\n");
 	
 	@Override

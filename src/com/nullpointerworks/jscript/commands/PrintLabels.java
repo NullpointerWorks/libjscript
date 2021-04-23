@@ -30,11 +30,16 @@ public class PrintLabels implements JScript
 	private void reset()
 	{
 		amount = 0;
-		setNoPrint(false);
-		setRequestAmount(false);
+		noprint = false;
+		request = false;
 		repeat = false;
 	}
 	
+	/**
+	 * 
+	 * @param amount - the number of labels to print
+	 * @return this same instance of PrintLabels
+	 */
 	public PrintLabels setAmount(int amount)
 	{
 		reset();
@@ -73,6 +78,6 @@ public class PrintLabels implements JScript
 		
 		if (amount > 0) return "A "+amount; // print a fixed amount
 		if (amount < 0) return "A"; // warning! print infinite
-		return "A 1"; // default; print 1
+		return "A 0"; // default; print none
 	}
 }

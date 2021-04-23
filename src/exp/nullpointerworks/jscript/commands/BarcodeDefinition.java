@@ -8,6 +8,7 @@ package exp.nullpointerworks.jscript.commands;
 import exp.nullpointerworks.jscript.BarcodeType;
 import exp.nullpointerworks.jscript.JScript;
 import exp.nullpointerworks.jscript.Rotation;
+import exp.nullpointerworks.jscript.barcodes.Code128;
 
 /**
  * The B command defines a barcode field in the label format. The most common barcode types are supported by the printers. (From the manual)
@@ -17,15 +18,19 @@ import exp.nullpointerworks.jscript.Rotation;
  */
 public class BarcodeDefinition implements JScript 
 {
-	private String name = "";
-	private int x = 0;
-	private int y = 0;
-	private Rotation r = Rotation.DEG_0;
+	private String name;
+	private int x;
+	private int y;
+	private Rotation r;
 	private BarcodeType bt;
 	
 	public BarcodeDefinition()
 	{
-		
+		name = "";
+		x = 0;
+		y = 0;
+		r = Rotation.DEG_0;
+		bt = new Code128();
 	}
 	
 	/**

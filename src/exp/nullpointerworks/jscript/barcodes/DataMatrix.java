@@ -5,6 +5,7 @@
  */
 package exp.nullpointerworks.jscript.barcodes;
 
+import exp.nullpointerworks.jscript.AbstractJScriptCommand;
 import exp.nullpointerworks.jscript.BarcodeType;
 import exp.nullpointerworks.jscript.DataMatrixDimension;
 import exp.nullpointerworks.jscript.JScriptException;
@@ -16,7 +17,7 @@ import exp.nullpointerworks.jscript.JScriptException;
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 153
  */
-public class DataMatrix implements BarcodeType 
+public class DataMatrix extends AbstractJScriptCommand implements BarcodeType 
 {
 	private float d;
 	private float o;
@@ -138,16 +139,6 @@ numbers, some others have a fixed length etc. More
 		if (dim != null) str += dim.toString();
 		str += "," + format(d);
 		str += ";" + text;
-		return str;
-	}
-
-	private String format(float x) 
-	{
-		String str = String.format("%.1f", x);
-		if (str.endsWith(".0"))
-		{
-			str = str.substring(0,str.length()-2);
-		}
 		return str;
 	}
 }

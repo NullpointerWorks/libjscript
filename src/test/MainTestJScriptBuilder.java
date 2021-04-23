@@ -12,6 +12,7 @@ import java.net.Socket;
 import exp.nullpointerworks.jscript.*;
 import exp.nullpointerworks.jscript.barcodes.*;
 import exp.nullpointerworks.jscript.commands.*;
+import exp.nullpointerworks.jscript.cutting.*;
 
 public class MainTestJScriptBuilder 
 {
@@ -34,7 +35,8 @@ public class MainTestJScriptBuilder
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
 		script.add( new JobStart() );
 		script.add( new BarcodeDefinition(13, 1.2f, Rotation.DEG_0, dataMatrix) );
-		script.add( new PrintLabels().setAmount(1) );
+		script.add( new CutterParameter( new CuttingAmount(2) ) );
+		script.add( new PrintLabels().setAmount(20) );
 		
 		
 		

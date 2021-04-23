@@ -5,6 +5,7 @@
  */
 package exp.nullpointerworks.jscript.commands;
 
+import exp.nullpointerworks.jscript.AbstractJScriptCommand;
 import exp.nullpointerworks.jscript.CuttingMethod;
 import exp.nullpointerworks.jscript.JScript;
 import exp.nullpointerworks.jscript.JScriptException;
@@ -19,9 +20,11 @@ do a "regular" cut. (From the manual)
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 303
  */
-public class CutterParameter implements JScript 
+public class CutterParameter extends AbstractJScriptCommand implements JScript 
 {
 	private CuttingMethod method = null;
+	private Float disp1 = null;
+	private Float disp2 = null;
 	
 	public CutterParameter() {}
 	
@@ -43,6 +46,13 @@ public class CutterParameter implements JScript
 		
 		String str = "C ";
 		str += method.getText();
+		
+		if (disp1!=null)
+		{
+			str += ","+format(disp1);
+			if (disp2!=null) str += ","+format(disp2);
+		}
+		
 		return str;
 	}
 }

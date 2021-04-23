@@ -5,7 +5,7 @@ import com.nullpointerworks.jscript.Measurement;
 
 /**
  * This command sets the measuring unit for the following label data.
- * Once it is sent, all following settings in a label are measured in the selected unit. 
+ * Once it is sent, all following settings in a label are measured in the selected unit. (From the manual)
  * 
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 86

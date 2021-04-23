@@ -58,43 +58,99 @@ public enum DataMatrixDimension
 	
 	private final int rows;
 	private final int cols;
-	private final int chars;
-	private final int nums;
-	private DataMatrixDimension(int s, int cr, int nm) 
+	private final int numeric;
+	private final int alphanum;
+	private DataMatrixDimension(int s, int numeric, int alphanum) 
 	{
 		rows = s;
 		cols = s;
-		chars = cr;
-		nums = nm;
+		this.numeric = numeric;
+		this.alphanum = alphanum;
 	}
 	
-	private DataMatrixDimension(int r, int c, int cr, int nm) 
+	private DataMatrixDimension(int r, int c, int numeric, int alphanum) 
 	{
 		rows = r;
 		cols = c;
-		chars = cr;
-		nums = nm;
+		this.numeric = numeric;
+		this.alphanum = alphanum;
 	}
 	
 	/**
-	 * Returns the number of characters that fit in this DataMatrix dimension.
-	 */
-	public int getCharacters()
-	{
-		return chars;
-	}
-	
-	/**
-	 * Returns the number of numbers that fit in this DataMatrix dimension.
+	 * Returns the number of numbers only that fit in this DataMatrix dimension.
 	 */
 	public int getNumerics()
 	{
-		return nums;
+		return numeric;
+	}
+	
+	/**
+	 * Returns the number of characters, including numbers, that fit in this DataMatrix dimension.
+	 */
+	public int getAlphaNumerics()
+	{
+		return alphanum;
 	}
 	
 	@Override
 	public String toString() 
 	{
 		return "+ROWS"+rows+"+COLS"+cols;
+	}
+
+	// ==================================================================
+	// static utility
+	// ==================================================================
+	
+	public static DataMatrixDimension findDimension(boolean isNumeric, int length) 
+	{
+		DataMatrixDimension found = null;
+		if (isNumeric)
+		{
+			found = findNumeric(length);
+		}
+		else
+		{
+			found = findAlphaNumeric(length);
+		}
+		return found;
+	}
+	
+	static DataMatrixDimension findNumeric(int length) 
+	{
+		DataMatrixDimension[] values = DataMatrixDimension.values();
+		DataMatrixDimension found = DM_144x144;
+		for (DataMatrixDimension dim : values)
+		{
+			if (dim == DM_144x144)
+			{
+				if (found != DM_144x144) break; // check square only
+			}
+			
+			if (length < dim.getNumerics())
+			{
+				if (dim.getNumerics() < found.getNumerics()) found = dim;
+			}
+		}
+		return found;
+	}
+	
+	static DataMatrixDimension findAlphaNumeric(int length) 
+	{
+		DataMatrixDimension[] values = DataMatrixDimension.values();
+		DataMatrixDimension found = DM_144x144;
+		for (DataMatrixDimension dim : values)
+		{
+			if (dim == DM_144x144)
+			{
+				if (found != DM_144x144) break; // check square only
+			}
+			
+			if (length < dim.getAlphaNumerics())
+			{
+				if (dim.getAlphaNumerics() < found.getAlphaNumerics()) found = dim;
+			}
+		}
+		return found;
 	}
 }

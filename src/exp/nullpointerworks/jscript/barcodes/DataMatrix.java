@@ -7,9 +7,11 @@ package exp.nullpointerworks.jscript.barcodes;
 
 import exp.nullpointerworks.jscript.BarcodeType;
 import exp.nullpointerworks.jscript.DataMatrixDimension;
+import exp.nullpointerworks.jscript.JScriptException;
 
 /**
- * TODO - Data Matrix
+ * 
+ * 
  * 
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 153
@@ -31,6 +33,13 @@ public class DataMatrix implements BarcodeType
 		setForceRectangle(false);
 		setVerification(false,false,0f);
 		setDataMatrixDimension(null);
+	}
+	
+	public DataMatrix(float dotsize, String text)
+	{
+		this();
+		setDotSize(dotsize);
+		setText(text);
 	}
 	
 	public DataMatrix(float dotsize, String text, DataMatrixDimension dim)
@@ -97,24 +106,41 @@ numbers, some others have a fixed length etc. More
 	}
 	
 	@Override
-	public String getText() 
+	public String getText() throws JScriptException 
 	{
-		// B[:name;]x, y,  r, DATAMATRIX[+options],dotsize,{fx};text
-		// B        13,1.2,0, DATAMATRIX          ,0.3         ;Hello
+		if (text.length() < 1) throw new JScriptException("No Data Exception: No data was provided to decode into a datamatrix.");
+		
+		if (dim != null)
+		{
+			boolean fits = true;
+			boolean isNumeric = text.matches("^[0-9]+$");
+			if (isNumeric) // has only numbers
+			{
+				if (text.length() > dim.getNumerics())
+				{
+					fits = false;
+				}
+			}
+			else
+			{
+				if (text.length() > dim.getAlphaNumerics())
+				{
+					fits = false;
+				}
+			}
+			if (!fits) throw new JScriptException("Size Exception: The text \""+text+"\" does not fit in the dimension of the datamatrix.");
+		}
 		
 		String str = "DATAMATRIX";
-
 		if (optForcRect) str += "+RECT";
 		if (optVerify) str += "+VERIFY"+format(o);
 		if (optGoodBad) str += "+GOODBAD"+format(o);
-		
-		str += dim.toString();
+		if (dim != null) str += dim.toString();
 		str += "," + format(d);
 		str += ";" + text;
-		
 		return str;
 	}
-	
+
 	private String format(float x) 
 	{
 		String str = String.format("%.1f", x);

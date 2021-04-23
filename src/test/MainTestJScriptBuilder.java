@@ -22,7 +22,7 @@ public class MainTestJScriptBuilder
 	
 	public MainTestJScriptBuilder()
 	{
-		DataMatrix dataMatrix = new DataMatrix(0.3f, "Hello", DataMatrixDimension.DM_12x12);
+		DataMatrix dataMatrix = new DataMatrix(0.3f, "Hello World!");
 		
 		
 		

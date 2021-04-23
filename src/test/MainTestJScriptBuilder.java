@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import exp.nullpointerworks.jscript.*;
+import exp.nullpointerworks.jscript.barcodes.*;
 import exp.nullpointerworks.jscript.commands.*;
 
 public class MainTestJScriptBuilder 
@@ -21,6 +22,10 @@ public class MainTestJScriptBuilder
 	
 	public MainTestJScriptBuilder()
 	{
+		DataMatrix dataMatrix = new DataMatrix(0.3f, "Hello", DataMatrixDimension.DM_12x12);
+		
+		
+		
 		JScriptBuilder script = new JScriptBuilder();
 		script.setReturnCharacter( ReturnCharacter.CRLF );
 		
@@ -28,9 +33,7 @@ public class MainTestJScriptBuilder
 		// I advise to always set the unit to make sure you're working in the intended unit
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
 		script.add( new JobStart() );
-		
-		script.add( new BarcodeDefinition() );
-		
+		script.add( new BarcodeDefinition(13, 1.2f, Rotation.DEG_0, dataMatrix) );
 		script.add( new PrintLabels().setAmount(1) );
 		
 		
@@ -46,6 +49,8 @@ public class MainTestJScriptBuilder
 			e.printStackTrace();
 			return;
 		}
+		
+		System.out.println(jscript);
 		
 		/*
 		try 

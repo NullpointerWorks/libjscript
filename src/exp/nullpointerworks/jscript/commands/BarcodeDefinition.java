@@ -24,26 +24,23 @@ public class BarcodeDefinition implements JScript
 	private float y;
 	private Rotation r;
 	private BarcodeType bt;
-	private String text;
 	
 	public BarcodeDefinition()
 	{
-		name = "";
-		x = 0;
-		y = 0;
-		r = Rotation.DEG_0;
-		bt = null;
-		text = "";
+		setName("");
+		setX(0f);
+		setY(0f);
+		setRotation(Rotation.DEG_0);
+		setBarcodeType(null);
 	}
 	
-	public BarcodeDefinition(float x, float y, Rotation r, BarcodeType bt, String text)
+	public BarcodeDefinition(float x, float y, Rotation r, BarcodeType bt)
 	{
-		name="";
-		this.x=x;
-		this.y=y;
-		this.r=r;
-		this.bt=bt;
-		this.text=text;
+		setName("");
+		setX(x);
+		setY(y);
+		setRotation(r);
+		setBarcodeType(bt);
 	}
 	
 	/**
@@ -114,22 +111,6 @@ refer to the operator´s manual. (From the manual)
 		return this;
 	}
 	
-	/**
-	 * Contains the barcode data to be encoded in a barcode.
-Depending on the selected barcode type. Different rules are
-used for different barcodes. Some barcodes allow only
-numbers, some others have a fixed length etc. More
- information can be found at the samples of each barcode. (From the manual)
-	 * @param t
-	 * @return the instance of this object
-	 */
-	public BarcodeDefinition setText(String t)
-	{
-		if (t==null) t = "";
-		text = t;
-		return this;
-	}
-	
 	@Override
 	public String getText() throws JScriptException 
 	{
@@ -142,12 +123,21 @@ numbers, some others have a fixed length etc. More
 			str = ("B:"+name+";");
 		}
 		
-		str += System.out.printf("%.1f", x)+",";
-		str += System.out.printf("%.1f", y)+",";
+		str += format(x)+",";
+		str += format(y)+",";
 		str += r.toString()+",";
-		str += bt.getText()+";";
-		str += text;
+		str += bt.getText();
 		
+		return str;
+	}
+	
+	private String format(float x) 
+	{
+		String str = String.format("%.1f", x);
+		if (str.endsWith(".0"))
+		{
+			str = str.substring(0,str.length()-2);
+		}
 		return str;
 	}
 }

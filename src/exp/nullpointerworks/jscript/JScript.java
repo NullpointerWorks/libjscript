@@ -7,5 +7,11 @@ package exp.nullpointerworks.jscript;
 
 public interface JScript 
 {
-	String getText();
+	/**
+	 * Generates the JScript describing this object and returns it as a String. It 
+	 * might throw an exception of the object, or embedded JScript object, encounters a problem.
+	 * @return the JScript describing this object
+	 * @throws JScriptException
+	 */
+	String getText() throws JScriptException;
 }

@@ -15,15 +15,40 @@ import exp.nullpointerworks.jscript.BarcodeType;
  */
 public class DataMatrix implements BarcodeType 
 {
+	private float d;
 	
+	public DataMatrix()
+	{
+		d = 0.3f;
+	}
 	
+	public DataMatrix(float dotsize)
+	{
+		d = dotsize;
+	}
 	
-	
+	/**
+	 * The dotsize of the pixels of the datamatrix. 
+	 * @param dotsize
+	 * @return the instance of this object
+	 */
+	public DataMatrix setDotSize(float dotsize)
+	{
+		d=dotsize;
+		return this;
+	}
 	
 	@Override
 	public String getText() 
 	{
-		return null;
+		// B[:name;]x, y,  r, DATAMATRIX[+options],dotsize,{fx};text
+		// B        13,1.2,0, DATAMATRIX          ,0.3         ;Hello
+		
+		String str = "DATAMATRIX";
+		
+		
+		str += "," + System.out.printf("%.1f", d);
+		return str;
 	}
 
 }

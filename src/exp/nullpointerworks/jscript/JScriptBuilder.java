@@ -67,7 +67,7 @@ public class JScriptBuilder implements JScript
 	}
 	
 	@Override
-	public String getText() 
+	public String getText() throws JScriptException
 	{
 		String job = "";
 		

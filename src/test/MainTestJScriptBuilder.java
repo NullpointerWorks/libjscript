@@ -29,18 +29,34 @@ public class MainTestJScriptBuilder
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
 		script.add( new JobStart() );
 		
-		script.add( new Custom("v") );
+		script.add( new BarcodeDefinition() );
 		
 		script.add( new PrintLabels().setAmount(1) );
 		
+		
+		
+		
+		String jscript = "";
 		try 
 		{
-			sendJScript("192.168.10.95", 9100, script.getText());
+			jscript = script.getText();
+		} 
+		catch (JScriptException e) 
+		{
+			e.printStackTrace();
+			return;
+		}
+		
+		/*
+		try 
+		{
+			sendJScript("192.168.10.95", 9100, jscript);
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
+		//*/
 	}
 	
 	public void sendJScript(String ip, int port, String jscript) throws IOException

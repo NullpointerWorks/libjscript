@@ -7,11 +7,12 @@ package exp.nullpointerworks.jscript.commands;
 
 import exp.nullpointerworks.jscript.BarcodeType;
 import exp.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.JScriptException;
 import exp.nullpointerworks.jscript.Rotation;
-import exp.nullpointerworks.jscript.barcodes.Code128;
 
 /**
- * The B command defines a barcode field in the label format. The most common barcode types are supported by the printers. (From the manual)
+ * The B command defines a barcode field in the label format. The most common barcode 
+types are supported by the printers. (From the manual)
  * 
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 111
@@ -19,10 +20,11 @@ import exp.nullpointerworks.jscript.barcodes.Code128;
 public class BarcodeDefinition implements JScript 
 {
 	private String name;
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 	private Rotation r;
 	private BarcodeType bt;
+	private String text;
 	
 	public BarcodeDefinition()
 	{
@@ -30,7 +32,18 @@ public class BarcodeDefinition implements JScript
 		x = 0;
 		y = 0;
 		r = Rotation.DEG_0;
-		bt = new Code128();
+		bt = null;
+		text = "";
+	}
+	
+	public BarcodeDefinition(float x, float y, Rotation r, BarcodeType bt, String text)
+	{
+		name="";
+		this.x=x;
+		this.y=y;
+		this.r=r;
+		this.bt=bt;
+		this.text=text;
 	}
 	
 	/**
@@ -57,7 +70,7 @@ of a label and the upper left corner of the barcode. (From the manual)
 	 * @param xpos
 	 * @return the instance of this object
 	 */
-	public BarcodeDefinition setX(int xpos)
+	public BarcodeDefinition setX(float xpos)
 	{
 		x=xpos;
 		return this;
@@ -72,16 +85,15 @@ refer to the operator´s manual. (From the manual)
 	 * @param ypos
 	 * @return the instance of this object
 	 */
-	public BarcodeDefinition setY(int ypos)
+	public BarcodeDefinition setY(float ypos)
 	{
 		y=ypos;
 		return this;
 	}
 	
 	/**
-	 * Rotation - Rotates a barcode in 4 directions. Valid values are 0,
-90, 180 and 270.
-Measurement in degrees
+	 * Rotation - Rotates a barcode in 4 directions. Valid values are 0, 
+90, 180 and 270. Measurement in degrees. (From the manual)
 	 * @param r
 	 * @return the instance of this object
 	 */
@@ -98,28 +110,43 @@ Measurement in degrees
 	 */
 	public BarcodeDefinition setBarcodeType(BarcodeType bct)
 	{
-		
-		
-		
-		
+		this.bt=bct;
 		return this;
 	}
 	
-	
+	/**
+	 * Contains the barcode data to be encoded in a barcode.
+Depending on the selected barcode type. Different rules are
+used for different barcodes. Some barcodes allow only
+numbers, some others have a fixed length etc. More
+ information can be found at the samples of each barcode. (From the manual)
+	 * @param t
+	 * @return the instance of this object
+	 */
+	public BarcodeDefinition setText(String t)
+	{
+		if (t==null) t = "";
+		text = t;
+		return this;
+	}
 	
 	@Override
-	public String getText()
+	public String getText() throws JScriptException 
 	{
-		String str = "B ";
+		if (r==null) throw new JScriptException("Nullpointer: The rotation parameter is null");
+		if (bt==null) throw new JScriptException("Nullpointer: The barcode type is null");
 		
+		String str = "B ";
 		if (name.length()>0)
 		{
 			str = ("B:"+name+";");
 		}
 		
-		
-		
-		
+		str += System.out.printf("%.1f", x)+",";
+		str += System.out.printf("%.1f", y)+",";
+		str += r.toString()+",";
+		str += bt.getText()+";";
+		str += text;
 		
 		return str;
 	}

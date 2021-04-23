@@ -3,9 +3,9 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript.commands;
+package exp.nullpointerworks.jscript.commands;
 
-import com.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.JScript;
 
 /**
  * TODO - PrintLabels
@@ -36,9 +36,8 @@ public class PrintLabels implements JScript
 	}
 	
 	/**
-	 * 
 	 * @param amount - the number of labels to print
-	 * @return this same instance of PrintLabels
+	 * @return the instance of this object
 	 */
 	public PrintLabels setAmount(int amount)
 	{
@@ -47,6 +46,11 @@ public class PrintLabels implements JScript
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param b
+	 * @return the instance of this object
+	 */
 	public PrintLabels setNoPrint(boolean b)
 	{
 		reset();
@@ -54,6 +58,11 @@ public class PrintLabels implements JScript
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param b
+	 * @return the instance of this object
+	 */
 	public PrintLabels setRequestAmount(boolean b)
 	{
 		reset();
@@ -61,6 +70,12 @@ public class PrintLabels implements JScript
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param b
+	 * @param r
+	 * @return the instance of this object
+	 */
 	public PrintLabels setRequestAmount(boolean b, boolean r)
 	{
 		reset();
@@ -78,6 +93,6 @@ public class PrintLabels implements JScript
 		
 		if (amount > 0) return "A "+amount; // print a fixed amount
 		if (amount < 0) return "A"; // warning! print infinite
-		return "A 0"; // default; print none
+		return "A 1"; // default; print 1
 	}
 }

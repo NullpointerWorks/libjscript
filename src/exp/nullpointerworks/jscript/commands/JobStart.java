@@ -3,9 +3,9 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript.commands;
+package exp.nullpointerworks.jscript.commands;
 
-import com.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.JScript;
 
 /**
  * The J command tells the printer, that the following data contains label specific data. It starts a new print job. (From the manual)

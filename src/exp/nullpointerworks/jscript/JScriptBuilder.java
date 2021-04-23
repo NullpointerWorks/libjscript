@@ -3,7 +3,7 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript;
+package exp.nullpointerworks.jscript;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class JScriptBuilder implements JScript
 	public JScriptBuilder()
 	{
 		script = new ArrayList<JScript>();
-		RET = ReturnCharacter.CRLF;
+		RET = ReturnCharacter.CR;
 	}
 	
 	public void setReturnCharacter(ReturnCharacter ret)
@@ -30,24 +30,40 @@ public class JScriptBuilder implements JScript
 		RET = ret;
 	}
 	
-	public void set(int index, JScript js)
-	{
-		script.set(index, js);
-	}
-	
 	public void add(JScript js)
 	{
-		if (!script.contains(js)) script.add(js);
+		script.add(js);
+	}
+	
+	public void add(JScript ... jsl)
+	{
+		for (JScript js : jsl)
+		{
+			add(js);
+		}
+	}
+	
+	public void add(List<JScript> jsl)
+	{
+		for (JScript js : jsl)
+		{
+			add(js);
+		}
+	}
+	
+	public JScript set(int index, JScript js)
+	{
+		return script.set(index, js);
 	}
 	
 	public void remove(JScript js)
 	{
-		if (script.contains(js)) script.remove(js);
+		script.remove(js);
 	}
 	
-	public void remove(int index)
+	public JScript remove(int index)
 	{
-		script.remove(index);
+		return script.remove(index);
 	}
 	
 	@Override

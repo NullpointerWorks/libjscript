@@ -9,8 +9,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import com.nullpointerworks.jscript.*;
-import com.nullpointerworks.jscript.commands.*;
+import exp.nullpointerworks.jscript.*;
+import exp.nullpointerworks.jscript.commands.*;
 
 public class MainTestJScriptBuilder 
 {
@@ -22,19 +22,16 @@ public class MainTestJScriptBuilder
 	public MainTestJScriptBuilder()
 	{
 		JScriptBuilder script = new JScriptBuilder();
+		script.setReturnCharacter( ReturnCharacter.CRLF );
 		
 		// the command below affects all labels printed afterwards, even outside this job.
 		// I advise to always set the unit to make sure you're working in the intended unit
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
-		
 		script.add( new JobStart() );
 		
+		script.add( new Custom("v") );
 		
-		
-		
-		
-		script.add( new PrintLabels().setAmount(4) );
-		script.setReturnCharacter( ReturnCharacter.LF );
+		script.add( new PrintLabels().setAmount(1) );
 		
 		try 
 		{
@@ -48,11 +45,11 @@ public class MainTestJScriptBuilder
 	
 	public void sendJScript(String ip, int port, String jscript) throws IOException
 	{
-		Socket clientSocket = new Socket(ip,port);
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream() );
-		outToServer.write(jscript.getBytes("UTF-8"));
-		outToServer.close();
-		clientSocket.close();
+		var s = new Socket(ip,port);
+		var o = new DataOutputStream( s.getOutputStream() );
+		o.write(jscript.getBytes("UTF-8"));
+		o.close();
+		s.close();
 	}
 }
 /*

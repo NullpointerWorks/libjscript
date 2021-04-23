@@ -3,7 +3,7 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript;
+package exp.nullpointerworks.jscript;
 
 public enum ReturnCharacter 
 {

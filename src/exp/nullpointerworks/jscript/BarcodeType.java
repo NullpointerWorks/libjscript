@@ -3,9 +3,9 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript;
+package exp.nullpointerworks.jscript;
 
-public interface JScript 
+public interface BarcodeType extends JScript
 {
-	String getText();
+	
 }

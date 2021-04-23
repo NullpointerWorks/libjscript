@@ -1,7 +1,7 @@
-package com.nullpointerworks.jscript.commands;
+package exp.nullpointerworks.jscript.commands;
 
-import com.nullpointerworks.jscript.JScript;
-import com.nullpointerworks.jscript.Measurement;
+import exp.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.Measurement;
 
 /**
  * This command sets the measuring unit for the following label data.

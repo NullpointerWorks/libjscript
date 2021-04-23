@@ -3,9 +3,9 @@
  * (http://unlicense.org/)
  * Nullpointer Works (2021)
  */
-package com.nullpointerworks.jscript.commands;
+package exp.nullpointerworks.jscript.commands;
 
-import com.nullpointerworks.jscript.JScript;
+import exp.nullpointerworks.jscript.JScript;
 
 /**
  * A user defined command set with just a string. This is a quick way to write JScript without going through various options and conditions.

@@ -1,0 +1,19 @@
+; start a job with mm setting
+m m
+J
+
+; speed,heat,print method,no saver
+H 30,0,T,R0
+
+; Brady THT-1-729 label and 180 deg rotation
+S l1;0,1,6,9,19,20.5,4
+O R
+
+; text = x,y,r,font,size;text
+T 1,4,0,3,2;Hello World
+
+; datamatrix size depends on the encoded data
+B 13,1.2,0,DATAMATRIX,0.3;Hello
+
+; print 4 labels
+A 4

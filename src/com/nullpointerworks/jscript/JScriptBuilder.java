@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * This class serves to hold a collection of JScript commands that can later 
+ * be compiled into a single string. This string can be send over via a 
+ * network connection or USB stream.
  * @author Michiel Drost - Nullpointer Works
  */
 public class JScriptBuilder implements JScript

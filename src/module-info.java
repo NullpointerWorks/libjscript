@@ -9,4 +9,5 @@
 module libnpw.jscript 
 {
 	exports com.nullpointerworks.jscript;
+	exports com.nullpointerworks.jscript.commands;
 }

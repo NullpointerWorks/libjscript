@@ -8,7 +8,7 @@ import com.nullpointerworks.jscript.Measurement;
  * Once it is sent, all following settings in a label are measured in the selected unit. 
  * 
  * @author Michiel Drost - Nullpointer Works
- * @see MACH4S CAB Programming Manual x4 - page 86
+ * @see The CAB Programming Manual x4 - page 86
  */
 public class SetMeasurementUnit implements JScript 
 {

@@ -9,21 +9,24 @@ import exp.nullpointerworks.jscript.ExtensionType;
 import exp.nullpointerworks.jscript.JScriptException;
 
 /**
- * E SQLITE defines a SQLITE database which will be used in the label. (From the manual)
+ * E TMP defines the name of an external temporary file (TMP file). TMP files 
+ * can be used e.g. for serial numbering where the incremented or decremented 
+ * value is saved in the printer. This value can be the starting value for 
+ * the next label. (From the manual)
  * 
  * @author Michiel
- * @see The CAB Programming Manual x4 - page 310
+ * @see The CAB Programming Manual x4 - page 313
  */
-public class ExtensionSQLITE implements ExtensionType
+public class ExtensionTMP implements ExtensionType
 {
 	private String file;
 	
-	public ExtensionSQLITE()
+	public ExtensionTMP()
 	{
 		file = null;
 	}
 	
-	public ExtensionSQLITE(String fname)
+	public ExtensionTMP(String fname)
 	{
 		setExternalFile(fname);
 	}
@@ -33,13 +36,12 @@ public class ExtensionSQLITE implements ExtensionType
 	 * @param fname
 	 * @return the instance of this object
 	 */
-	public ExtensionSQLITE setExternalFile(String fname)
+	public ExtensionTMP setExternalFile(String fname)
 	{
-		if (fname.toLowerCase().endsWith(".db")) // remove the extension, if present
-			fname = fname.substring(0, fname.length()-3);
-		
-		if (fname.toLowerCase().endsWith(".sqlite3")) // remove the extension, if present
-			fname = fname.substring(0, fname.length()-8);
+		if (fname.toLowerCase().endsWith(".tmp")) // remove the extension, if present
+		{
+			fname = fname.substring(0, fname.length()-4);
+		}
 		
 		file = fname;
 		return this;
@@ -49,6 +51,6 @@ public class ExtensionSQLITE implements ExtensionType
 	public String getText() throws JScriptException 
 	{
 		if (file==null) throw new JScriptException("Nullpointer: No file name has been specified.");
-		return "SQLITE;"+file;
+		return "TMP;"+file;
 	}
 }

@@ -13,6 +13,7 @@ import exp.nullpointerworks.jscript.*;
 import exp.nullpointerworks.jscript.barcodes.*;
 import exp.nullpointerworks.jscript.commands.*;
 import exp.nullpointerworks.jscript.cutting.*;
+import exp.nullpointerworks.jscript.extension.ExtensionDBF;
 
 public class MainTestJScriptBuilder 
 {
@@ -23,24 +24,23 @@ public class MainTestJScriptBuilder
 	
 	public MainTestJScriptBuilder()
 	{
-		DataMatrix dataMatrix 	= new DataMatrix(0.3f, "Hello World!");
-		CuttingMethod cutTwo 	= new CuttingAmount(2);
-		
-		
-		
-		JScriptBuilder script = new JScriptBuilder();
+		DataMatrix dataMatrix 		= new DataMatrix(0.3f, "Hello World!");
+		CuttingMethod cutTwo 		= new CuttingAmount(2);
+		JScriptBuilder script 		= new JScriptBuilder();
 		script.setReturnCharacter( ReturnCharacter.CRLF );
 		
 		// the command below affects all labels printed afterwards, even outside this job.
 		// I advise to always set the unit to make sure you're working in the intended unit
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
+		
+		
 		script.add( new JobStart() );
-		script.add( new BarcodeDefinition(13, 1.2f, Rotation.DEG_0, dataMatrix) );
-		script.add( new CutterParameter(cutTwo) );
+		script.add( new BarcodeDefinition( 13, 1.2f, Rotation.DEG_0, dataMatrix ) );
+		script.add( new CutterParameter( cutTwo ) );
+		script.add( new DefineExtension( new ExtensionDBF("testdb.dbf") ) );
+		
+		
 		script.add( new PrintLabels().setAmount(20) );
-		
-		
-		
 		
 		String jscript = "";
 		try 

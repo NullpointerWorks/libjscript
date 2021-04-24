@@ -13,7 +13,6 @@ import exp.nullpointerworks.jscript.JScriptException;
 /**
  * 
  * 
- * 
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 153
  */
@@ -73,6 +72,13 @@ public class DataMatrix extends AbstractJScriptCommand implements BarcodeType
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param verify
+	 * @param checkContent
+	 * @param offset
+	 * @return the instance of this object
+	 */
 	public DataMatrix setVerification(boolean verify, boolean checkContent, float offset)
 	{
 		if (verify)
@@ -84,6 +90,11 @@ public class DataMatrix extends AbstractJScriptCommand implements BarcodeType
 		return this;
 	}
 	
+	/**
+	 * 
+	 * @param dim
+	 * @return the instance of this object
+	 */
 	public DataMatrix setDataMatrixDimension(DataMatrixDimension dim)
 	{
 		this.dim=dim;

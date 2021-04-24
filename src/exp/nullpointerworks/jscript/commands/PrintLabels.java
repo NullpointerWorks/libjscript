@@ -15,7 +15,7 @@ import exp.nullpointerworks.jscript.JScript;
  * 
  */
 /**
- * The A command is used to define the end of the label definition and to set the amount of labels to be printed. (From the manual)<br>
+ * The A (amount) command is used to define the end of the label definition and to set the amount of labels to be printed. (From the manual)<br>
  * 
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 107

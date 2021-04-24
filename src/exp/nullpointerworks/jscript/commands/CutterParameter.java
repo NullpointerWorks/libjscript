@@ -33,9 +33,39 @@ public class CutterParameter extends AbstractJScriptCommand implements JScript
 		setCuttingMethod(m);
 	}
 	
+	/**
+	 * 
+	 * @param m
+	 * @return the instance of this object
+	 */
 	public CutterParameter setCuttingMethod(CuttingMethod m)
 	{
 		method = m;
+		return this;
+	}
+	
+	/**
+	 * Offset to the end of the defined label. (From the manual)
+	 * @param d1
+	 * @return the instance of this object
+	 */
+	public CutterParameter setDisplacement1(Float d1)
+	{
+		disp1 = d1;
+		return this;
+	}
+	
+	/**
+	 * Offset to the first cutting position. (always positive values!) This double 
+	 * cut option offers the possibility to cut off portions of a label. [disp2] is 
+	 * not available when the cut before first label (s) parameter is used. disp2 
+	 * is only available for regular cuts and not for perforations! (From the manual)
+	 * @param d2
+	 * @return the instance of this object
+	 */
+	public CutterParameter setDisplacement2(Float d2)
+	{
+		disp2 = d2;
 		return this;
 	}
 	

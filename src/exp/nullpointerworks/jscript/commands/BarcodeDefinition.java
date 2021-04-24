@@ -5,6 +5,7 @@
  */
 package exp.nullpointerworks.jscript.commands;
 
+import exp.nullpointerworks.jscript.AbstractJScriptCommand;
 import exp.nullpointerworks.jscript.BarcodeType;
 import exp.nullpointerworks.jscript.JScript;
 import exp.nullpointerworks.jscript.JScriptException;
@@ -17,7 +18,7 @@ types are supported by the printers. (From the manual)
  * @author Michiel Drost - Nullpointer Works
  * @see The CAB Programming Manual x4 - page 111
  */
-public class BarcodeDefinition implements JScript 
+public class BarcodeDefinition extends AbstractJScriptCommand implements JScript 
 {
 	private String name;
 	private float x;
@@ -78,7 +79,7 @@ of a label and the upper left corner of the barcode. (From the manual)
 the distance between the top margin of a label and the upper
 left corner of the barcode.
 The maximum coordinate depends on the printer type. Please
-refer to the operator´s manual. (From the manual)
+refer to the operatorï¿½s manual. (From the manual)
 	 * @param ypos
 	 * @return the instance of this object
 	 */
@@ -128,16 +129,6 @@ refer to the operator´s manual. (From the manual)
 		str += r.toString()+",";
 		str += bt.getText();
 		
-		return str;
-	}
-	
-	private String format(float x) 
-	{
-		String str = String.format("%.1f", x);
-		if (str.endsWith(".0"))
-		{
-			str = str.substring(0,str.length()-2);
-		}
 		return str;
 	}
 }

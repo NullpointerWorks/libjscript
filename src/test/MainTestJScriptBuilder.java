@@ -23,7 +23,8 @@ public class MainTestJScriptBuilder
 	
 	public MainTestJScriptBuilder()
 	{
-		DataMatrix dataMatrix = new DataMatrix(0.3f, "Hello World!");
+		DataMatrix dataMatrix 	= new DataMatrix(0.3f, "Hello World!");
+		CuttingMethod cutTwo 	= new CuttingAmount(2);
 		
 		
 		
@@ -35,7 +36,7 @@ public class MainTestJScriptBuilder
 		script.add( new SetMeasurementUnit(Measurement.METRIC) );
 		script.add( new JobStart() );
 		script.add( new BarcodeDefinition(13, 1.2f, Rotation.DEG_0, dataMatrix) );
-		script.add( new CutterParameter( new CuttingAmount(2) ) );
+		script.add( new CutterParameter(cutTwo) );
 		script.add( new PrintLabels().setAmount(20) );
 		
 		

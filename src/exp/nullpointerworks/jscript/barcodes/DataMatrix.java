@@ -83,6 +83,8 @@ public class DataMatrix extends AbstractJScriptCommand implements BarcodeType
 	{
 		if (verify)
 		{
+			optGoodBad = false;
+			optVerify = false;
 			o = offset;
 			if (verify ^ checkContent) optGoodBad = verify;
 			else optVerify = verify;

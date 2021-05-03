@@ -97,6 +97,7 @@ refer to the operator�s manual. (From the manual)
 	 */
 	public BarcodeDefinition setRotation(Rotation r)
 	{
+		if (r==null) return this;
 		this.r = r;
 		return this;
 	}
@@ -108,6 +109,7 @@ refer to the operator�s manual. (From the manual)
 	 */
 	public BarcodeDefinition setBarcodeType(BarcodeType bct)
 	{
+		if (bct==null) return this;
 		this.bt=bct;
 		return this;
 	}

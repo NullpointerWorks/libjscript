@@ -26,6 +26,8 @@ public class MainTestJScriptBuilder
 	{
 		DataMatrix dataMatrix 		= new DataMatrix(0.3f, "Hello World!");
 		CuttingMethod cutTwo 		= new CuttingAmount(2);
+		ExtensionType dbf 			= new ExtensionDBF("testdb.dbf");
+		
 		JScriptBuilder script 		= new JScriptBuilder();
 		script.setReturnCharacter( ReturnCharacter.CRLF );
 		
@@ -37,7 +39,7 @@ public class MainTestJScriptBuilder
 		script.add( new JobStart() );
 		script.add( new BarcodeDefinition( 13, 1.2f, Rotation.DEG_0, dataMatrix ) );
 		script.add( new CutterParameter( cutTwo ) );
-		script.add( new DefineExtension( new ExtensionDBF("testdb.dbf") ) );
+		script.add( new DefineExtension( dbf ) );
 		
 		
 		script.add( new PrintLabels().setAmount(20) );
